@@ -1,0 +1,7 @@
+openocd -f C:\msys64\mingw64\share\openocd\scripts\interface\stlink.cfg -f C:\msys64\mingw64\share\openocd\scripts\board\stm32f103c8_blue_pill.cfg
+
+
+C:\Users\ISAAC>openocd -f C:\msys64\mingw64\share\openocd\scripts\interface\stlink.cfg -f C:\msys64\mingw64\share\openocd\scripts\target\stm32f4x.cfg
+
+
+cmd in address bar -> opens cmd at current location 

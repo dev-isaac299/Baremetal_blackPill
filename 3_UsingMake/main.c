@@ -73,10 +73,10 @@ int main(void)
 	{
 		//GPIOA_OD_R |=LED_PIN;
 
-		GPIOC_OD_R |=USER_LED;
-//		for(int i=0;i<900000;i++){
+		GPIOC_OD_R ^=USER_LED;
+		for(int i=0;i<900000;i++){
 
-	//	}
+		}
 
 
 	}

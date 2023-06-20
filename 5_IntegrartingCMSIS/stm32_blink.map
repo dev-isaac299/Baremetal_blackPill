@@ -1,0 +1,149 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00018000         xrw
+FLASH            0x08000000         0x00080000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD stm32f401_startup.o
+                0x20018000                _estack = (ORIGIN (SRAM) + LENGTH (SRAM))
+                0x00000200                __max_heap_size = 0x200
+                0x00000400                __max_stack_size = 0x400
+
+.text           0x08000000      0x278
+                0x08000000                . = ALIGN (0x4)
+ *(.isr_vector_tbl)
+ .isr_vector_tbl
+                0x08000000      0x194 stm32f401_startup.o
+                0x08000000                vector_tbl
+ */()
+ *(.text)
+ .text          0x08000194       0x58 main.o
+                0x08000194                main
+ .text          0x080001ec       0x8c stm32f401_startup.o
+                0x080001ec                EXTI2_IRQHandler
+                0x080001ec                SVCall_Handler
+                0x080001ec                SPI4_IRQHandler
+                0x080001ec                TIM1_CC_IRQHandler
+                0x080001ec                Systick_Handler
+                0x080001ec                DMA2_Stream5_IRQHandler
+                0x080001ec                DMA1_Stream5_IRQHandler
+                0x080001ec                Hardfault_Handler
+                0x080001ec                SDIO_IRQHandler
+                0x080001ec                PendSV_Handler
+                0x080001ec                NMI_Handler
+                0x080001ec                EXTI3_IRQHandler
+                0x080001ec                TIM1_UP_TIM10_IRQHandler
+                0x080001ec                I2C3_ER_IRQHandler
+                0x080001ec                EXTI18_OTG_FS_WKUP_IRQHandler
+                0x080001ec                EXTI0_IRQHandler
+                0x080001ec                I2C2_EV_IRQHandler
+                0x080001ec                DMA1_Stream2_IRQHandler
+                0x080001ec                FPU_IRQHandler
+                0x080001ec                UsageFault_Handler
+                0x080001ec                DMA2_Stream2_IRQHandler
+                0x080001ec                SPI1_IRQHandler
+                0x080001ec                TIM1_BRK_TIM9_IRQHandler
+                0x080001ec                DMA2_Stream3_IRQHandler
+                0x080001ec                USART6_IRQHandler
+                0x080001ec                DMA2_Stream6_IRQHandler
+                0x080001ec                DMA2_Stream0_IRQHandler
+                0x080001ec                TIM4_IRQHandler
+                0x080001ec                EXTI21_TAMP_STAMP_IRQHandler
+                0x080001ec                I2C1_EV_IRQHandler
+                0x080001ec                DMA1_Stream6_IRQHandler
+                0x080001ec                DMA1_Stream1_IRQHandler
+                0x080001ec                TIM3_IRQHandler
+                0x080001ec                RCC_IRQHandler
+                0x080001ec                Default_Handler
+                0x080001ec                EXTI15_10_IRQHandler
+                0x080001ec                ADC_IRQHandler
+                0x080001ec                DMA1_Stream7_IRQHandler
+                0x080001ec                TIM5_IRQHandler
+                0x080001ec                DMA2_Stream7_IRQHandler
+                0x080001ec                I2C3_EV_IRQHandler
+                0x080001ec                EXTI9_5_IRQHandler
+                0x080001ec                EXT16_PVD_IRQHandler
+                0x080001ec                SPI2_IRQHandler
+                0x080001ec                MemManage_Handler
+                0x080001ec                DMA1_Stream0_IRQHandler
+                0x080001ec                EXTI4_IRQHandler
+                0x080001ec                EXTI22_RTC_WKUP_IRQHandler
+                0x080001ec                WWDG_IRQHandler
+                0x080001ec                TIM2_IRQHandler
+                0x080001ec                TIM1_TRG_COM_TIM11_IRQHandler
+                0x080001ec                EXTI1_IRQHandler
+                0x080001ec                EXTI17_RTC_Alarm_IRQHandler
+                0x080001ec                USART2_IRQHandler
+                0x080001ec                I2C2_ER_IRQHandler
+                0x080001ec                DMA2_Stream1_IRQHandler
+                0x080001ec                FLASH_IRQHandler
+                0x080001ec                DMA2_Stream4_IRQHandler
+                0x080001ec                BusFault_Handler
+                0x080001ec                USART1_IRQHandler
+                0x080001ec                OTG_FS_IRQHandler
+                0x080001ec                SPI3_IRQHandler
+                0x080001ec                DMA1_Stream4_IRQHandler
+                0x080001ec                I2C1_ER_IRQHandler
+                0x080001ec                DebugMonitor_Handler
+                0x080001ec                DMA1_Stream3_IRQHandler
+                0x080001f4                Reset_Handler
+ *(.rodata)
+                0x08000278                . = ALIGN (0x4)
+                0x08000278                _etext = .
+
+.glue_7         0x08000278        0x0
+ .glue_7        0x08000278        0x0 linker stubs
+
+.glue_7t        0x08000278        0x0
+ .glue_7t       0x08000278        0x0 linker stubs
+
+.vfp11_veneer   0x08000278        0x0
+ .vfp11_veneer  0x08000278        0x0 linker stubs
+
+.v4_bx          0x08000278        0x0
+ .v4_bx         0x08000278        0x0 linker stubs
+
+.iplt           0x08000278        0x0
+ .iplt          0x08000278        0x0 stm32f401_startup.o
+
+.rel.dyn        0x08000278        0x0
+ .rel.iplt      0x08000278        0x0 stm32f401_startup.o
+
+.data           0x20000000        0x0 load address 0x08000278
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sdata = .
+ *(.data)
+ .data          0x20000000        0x0 main.o
+ .data          0x20000000        0x0 stm32f401_startup.o
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x08000278
+ .igot.plt      0x20000000        0x0 stm32f401_startup.o
+
+.bss            0x20000000        0x0 load address 0x08000278
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _sbss = .
+ *(.bss)
+ .bss           0x20000000        0x0 main.o
+ .bss           0x20000000        0x0 stm32f401_startup.o
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _ebss = .
+OUTPUT(stm32_blink.elf elf32-littlearm)
+
+.comment        0x00000000       0x6e
+ .comment       0x00000000       0x6e main.o
+                                 0x6f (size before relaxing)
+ .comment       0x0000006e       0x6f stm32f401_startup.o
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 main.o
+ .ARM.attributes
+                0x00000033       0x33 stm32f401_startup.o
